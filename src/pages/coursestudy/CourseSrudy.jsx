@@ -16,18 +16,42 @@ const CourseStudy = ({ user }) => {
   useEffect(() => {
     fetchCourse(params.id);
   }, []);
+  
   return (
     <>
       {course && (
         <div className="course-study-page">
-          <img src={`${server}/${course.image}`} alt="" width={350} />
-          <h2>{course.title}</h2>
-          <h4>{course.description}</h4>
-          <h5>by - {course.createdBy}</h5>
-          <h5>Duration - {course.duration} weeks</h5>
-          <Link to={`/lectures/${course._id}`}>
-            <h2>Lectures</h2>
-          </Link>
+          <div className="course-study-card">
+            <div className="course-image-container">
+              <img src={`${server}/${course.image}`} alt={course.title} />
+            </div>
+            
+            <div className="course-info-container">
+               <div className="course-header">
+                 <h2>{course.title}</h2>
+                 <p className="course-creator">by <strong>{course.createdBy}</strong></p>
+               </div>
+               
+               <div className="course-description">
+                 <p>{course.description}</p>
+               </div>
+               
+               <div className="course-meta">
+                 <div className="meta-item">
+                   <span className="meta-label">Duration</span>
+                   <span className="meta-value">{course.duration} weeks</span>
+                 </div>
+                 <div className="meta-item">
+                   <span className="meta-label">Format</span>
+                   <span className="meta-value">Online Video</span>
+                 </div>
+               </div>
+
+               <Link to={`/lectures/${course._id}`} className="common-btn lecture-btn">
+                 Go to Lectures
+               </Link>
+            </div>
+          </div>
         </div>
       )}
     </>

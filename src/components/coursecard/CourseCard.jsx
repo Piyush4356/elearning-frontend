@@ -40,7 +40,7 @@ const CourseCard = ({ course }) => {
         <>
           {user && user.role !== "admin" ? (
             <>
-              {user.subscription.includes(course._id) ? (
+              {user.subscription?.includes(course._id) ? (
                 <button
                   onClick={() => navigate(`/course/study/${course._id}`)}
                   className="common-btn"

@@ -33,13 +33,14 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
-  async function registerUser(name, email, password, navigate) {
+  async function registerUser(name, email, password, role, navigate) {
     setBtnLoading(true);
     try {
       const { data } = await axios.post(`${server}/api/user/register`, {
         name,
         email,
         password,
+        role,
       });
 
       toast.success(data.message);
@@ -68,6 +69,46 @@ export const UserContextProvider = ({ children }) => {
     } catch (error) {
       toast.error(error.response.data.message);
       setBtnLoading(false);
+    }
+  }
+
+  async function deleteAccount(navigate) {
+    setBtnLoading(true);
+    try {
+      const { data } = await axios.delete(`${server}/api/user/me`, {
+        headers: { token: localStorage.getItem("token") },
+      });
+      toast.success(data.message);
+      localStorage.clear();
+      setUser([]);
+      setIsAuth(false);
+      setBtnLoading(false);
+      navigate("/login");
+    } catch (error) {
+      setBtnLoading(false);
+      toast.error(error.response?.data?.message || "Failed to delete account");
+    }
+  }
+
+  async function updateProfilePic(file) {
+    setBtnLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const { data } = await axios.put(`${server}/api/user/profile-pic`, formData, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
+
+      toast.success(data.message);
+      // Immediately reflect the updated avatar back to state
+      setUser(data.user);
+      setBtnLoading(false);
+    } catch (error) {
+      setBtnLoading(false);
+      toast.error(error.response?.data?.message || "Failed to upload image");
     }
   }
 
@@ -104,6 +145,8 @@ export const UserContextProvider = ({ children }) => {
         registerUser,
         verifyOtp,
         fetchUser,
+        updateProfilePic,
+        deleteAccount,
       }}
     >
       {children}

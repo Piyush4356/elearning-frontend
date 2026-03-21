@@ -39,7 +39,7 @@ const CourseDescription = ({ user }) => {
     );
 
     const options = {
-      key: "rzp_test_RRlr9ZMESOQsxx", // Enter the Key ID generated from the Dashboard
+      key: import.meta.env.VITE_RAZORPAY_KEY || "rzp_test_RRlr9ZMESOQsxx", // Enter the Key ID generated from the Dashboard
       amount: order.id, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "E learning", //your business name
@@ -110,7 +110,7 @@ const CourseDescription = ({ user }) => {
 
               <p>Let's get started with course At ₹{course.price}</p>
 
-              {user && user.subscription.includes(course._id) ? (
+              {user && user.subscription?.includes(course._id) ? (
                 <button
                   onClick={() => navigate(`/course/study/${course._id}`)}
                   className="common-btn"

@@ -265,7 +265,7 @@ const Lecture = ({ user }) => {
                       onClick={() => fetchLecture(e._id)}
                       key={i}
                       className={`lecture-number ${
-                        lecture._id === e._id && "active"
+                        lecture._id === e._id ? "active" : ""
                       }`}
                     >
                       {i + 1}. {e.title}{" "}
@@ -273,13 +273,18 @@ const Lecture = ({ user }) => {
                         progress[0].completedLectures.includes(e._id) && (
                           <span
                             style={{
-                              background: "red",
+                              background: "#10b981",
                               padding: "2px",
-                              borderRadius: "6px",
-                              color: "greenyellow",
+                              borderRadius: "50%",
+                              color: "white",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              boxShadow: "0 2px 5px rgba(16, 185, 129, 0.4)",
                             }}
+                            title="Lecture Completed"
                           >
-                            <TiTick />
+                            <TiTick size={20} />
                           </span>
                         )}
                     </div>

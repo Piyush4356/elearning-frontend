@@ -62,25 +62,55 @@
     }
 
     .lecture-number {
-      background-color: #fff;
-      padding: 10px;
-      border: 1px solid black;
-      margin-top: 10px;
-      border-radius: 5px;
-      text-align: center;
+      background: white;
+      padding: 16px 20px;
+      border: 1px solid #e2e8f0;
+      margin-top: 12px;
+      border-radius: 12px;
+      text-align: left;
       cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      color: #1e293b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 
       &:hover {
-        background-color: #1e40af;
+        background-color: #f8fafc;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+      }
+      
+      &.active {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
         color: white;
+        border-color: transparent;
+        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
       }
     }
-
-    .active {
-      background-color: #1e40af;
-      color: white;
-    }
   }
+}
+
+/* --- DARK MODE --- */
+body.dark .lecture-page .right .lecture-number {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255,255,255,0.05);
+  color: #f8fafc;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+body.dark .lecture-page .right .lecture-number:hover {
+  background: rgba(51, 65, 85, 0.8);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+body.dark .lecture-page .right .lecture-number.active {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-color: transparent;
 }
 
 .progress {
