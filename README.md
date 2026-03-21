@@ -1,61 +1,171 @@
 # 💻 E-Learning Platform — Frontend (Client)
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
+<p align="center">
+  <b>Modern and responsive UI for a full-stack E-Learning platform</b><br/>
+  Built with React, Vite, and custom CSS 🚀
+</p>
 
-> **Frontend of the E-Learning Web Application**, built using **React (Vite)** and **custom CSS**.  
-> It provides a responsive and interactive user interface for students and instructors, connected to the backend API.
-
----
-
-## 🧩 Project Overview
-
-The **E-Learning Frontend** enables users to browse courses, view details, enroll, watch lectures, and make payments securely.  
-It interacts with the backend via REST APIs, providing a seamless experience for both learners and educators.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/UI-Responsive-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" />
+</p>
 
 ---
 
-### 🔗 Related Repositories
+## 📌 Overview
 
-| Repository | Description |
-|-------------|-------------|
-| [E-Learning Server](https://github.com/Piyush4356/elearning-server) | Node.js + Express + MongoDB backend |
-| [E-Learning Frontend (this)](https://github.com/Piyush4356/elearning-frontend) | React-based frontend client |
+The **E-Learning Frontend** provides an interactive user interface for:
+
+* 🎓 Students to explore and enroll in courses
+* 👨‍🏫 Instructors to manage and deliver content
+* 💳 Users to complete secure payments
+
+It communicates with the backend via REST APIs to deliver a smooth and dynamic learning experience.
+
+---
+
+## 🔗 Related Repositories
+
+| Repository                                                      | Description                     |
+| --------------------------------------------------------------- | ------------------------------- |
+| 🖥️ [Backend](https://github.com/Piyush4356/elearning-server)   | Node.js + Express + MongoDB API |
+| 🌐 [Frontend](https://github.com/Piyush4356/elearning-frontend) | React-based client              |
 
 ---
 
 ## 🚀 Features
 
-✅ **Modern React UI** built with Vite  
-✅ **User Authentication** (login/register with backend integration)  
-✅ **Course Management** and enrollment pages  
-✅ **Lecture viewing** with video player  
-✅ **Payment Integration** (Razorpay / Stripe)  
-✅ **Responsive layout** built using pure CSS / custom design  
-✅ **API communication** via Axios  
-✅ **Protected routes** for students and instructors  
+* ⚛️ Modern React UI built with Vite
+* 🔐 User Authentication (Login/Register)
+* 📚 Course browsing and enrollment
+* 🎥 Lecture viewing with video player
+* 💳 Payment integration (Razorpay / Stripe)
+* 📱 Fully responsive design (custom CSS)
+* 🔗 API communication using Axios
+* 🛡️ Protected routes for role-based access
 
 ---
 
 ## 🧠 Tech Stack
 
-| Category | Technology |
-|-----------|-------------|
-| **Frontend Framework** | React (with Vite) |
-| **Styling** | CSS / Custom Components |
-| **Routing** | React Router DOM |
-| **State Management** | Context API (or Redux, if used) |
-| **API Calls** | Axios |
-| **Authentication** | JWT (handled via backend) |
-| **Deployment** | Vercel |
+| Category           | Technology        |
+| ------------------ | ----------------- |
+| Frontend Framework | React (Vite)      |
+| Styling            | CSS (Custom UI)   |
+| Routing            | React Router DOM  |
+| State Management   | Context API       |
+| API Handling       | Axios             |
+| Authentication     | JWT (via backend) |
+| Deployment         | Vercel            |
+
+---
+
+## 📁 Project Structure
+
+```bash
+elearning-frontend/
+│── src/
+│   │── components/
+│   │── pages/
+│   │── context/
+│   │── services/
+│   │── App.jsx
+│   │── main.jsx
+│── public/
+│── index.html
+│── package.json
+```
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone the repository
+### 1️⃣ Clone the repository
+
 ```bash
 git clone https://github.com/Piyush4356/elearning-frontend.git
 cd elearning-frontend
+```
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Configure environment variables
+
+Create a `.env` file:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+### 4️⃣ Run the development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 📡 Key Pages
+
+* 🏠 Home Page
+* 🔐 Login / Register
+* 📚 Course Listing
+* 📄 Course Details
+* 🎥 Lecture Player
+* 👤 User Dashboard
+
+---
+
+## 🎯 UI Highlights
+
+* Clean and minimal design
+* Dark mode support 🌙
+* Smooth navigation and transitions
+* Responsive across devices
+
+---
+
+## 📈 Future Improvements
+
+* 🔄 Add Redux for advanced state management
+* 📊 Dashboard analytics
+* 💬 Real-time chat/discussion
+* ⭐ Course reviews & ratings
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+**Piyush Sharma**
+
+* GitHub: https://github.com/Piyush4356
+
+---
+
+<p align="center">
+  ⭐ If you like this project, consider giving it a star!
+</p>
