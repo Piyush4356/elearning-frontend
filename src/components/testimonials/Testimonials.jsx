@@ -63,7 +63,7 @@ const Testimonials = () => {
     try {
       const { data } = await axios.post(
         `${server}/api/testimonial/add`,
-        { message, position: user?.role === "admin" ? "Admin" : "Student" },
+        { message, position: user?.role === "admin" ? "Admin" : user?.role === "tester" ? "Tester" : "Student" },
         {
           headers: {
             token: localStorage.getItem("token"),

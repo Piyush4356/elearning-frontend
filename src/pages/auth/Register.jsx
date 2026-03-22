@@ -60,8 +60,8 @@ const Register = () => {
             <option value="admin">Teacher</option>
           </select>
 
-          <button type="submit" disabled={btnLoading} className="common-btn">
-            {btnLoading ? "Please Wait..." : "Register"}
+          <button type="submit" disabled={btnLoading} className="common-btn" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
+            {btnLoading ? <div className="btn-spinner"></div> : "Register"}
           </button>
         </form>
         <p>

@@ -8,7 +8,7 @@ import "./dashboard.css";
 const AdminDashbord = ({ user }) => {
   const navigate = useNavigate();
 
-  if (user && user.role !== "admin") return navigate("/");
+  if (user && user.role !== "admin" && user.role !== "tester") return navigate("/");
 
   const [stats, setStats] = useState([]);
 
@@ -35,7 +35,7 @@ const AdminDashbord = ({ user }) => {
         <div className="main-content">
           <div className="box">
             <p>Total Courses</p>
-            <p>{stats.totalCoures}</p>
+            <p>{stats.totalCourses}</p>
           </div>
           <div className="box">
             <p>Total Lectures</p>

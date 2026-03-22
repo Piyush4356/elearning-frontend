@@ -112,6 +112,19 @@ body.dark .lecture-page .right .lecture-number.active {
   color: white;
   border-color: transparent;
 }
+body.dark .lecture-form{
+  background-color: #0b1326;
+  color: white;
+}
+body.dark .lecture-form h2{
+  color: white;
+}
+body.dark .lecture-form label{
+  color: white;
+}
+body.dark .lecture-form input{
+  color: white;
+}
 
 .progress {
   width: 20%;

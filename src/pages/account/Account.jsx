@@ -70,7 +70,7 @@ const Account = ({ user }) => {
             </div>
 
             <div className="profile-actions">
-              {user.role === "admin" && (
+              {(user.role === "admin" || user.role === "tester") && (
                 <button
                   onClick={() => navigate(`/admin/dashboard`)}
                   className="common-btn admin-btn"
@@ -90,8 +90,7 @@ const Account = ({ user }) => {
 
               <button
                 onClick={deleteHandler}
-                className="common-btn logout-btn"
-                style={{ background: "linear-gradient(135deg, #ef4444, #b91c1c)", marginTop: "15px" }}
+                className="common-btn delete-btn"
               >
                 Delete Account
               </button>

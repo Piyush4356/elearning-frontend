@@ -1,52 +1,139 @@
 .home {
-  background: transparent;
-  padding: 100px 0;
-  text-align: center;
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  /* Hero image */
+  background-image: url('/hero-bg.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+
+  /* Dark overlay so text is readable */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(10, 18, 40, 0.82) 0%,
+      rgba(10, 18, 40, 0.65) 50%,
+      rgba(10, 18, 40, 0.2) 100%
+    );
+    z-index: 1;
+  }
 
   .home-content {
-    max-width: 800px;
-    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding: 60px 60px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      padding: 60px 24px;
+      max-width: 100%;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 4px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
 
     h1 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #1e40af, #60a5fa);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-size: 52px;
+      font-weight: 800;
+      font-family: 'Manrope', sans-serif;
+      margin-bottom: 18px;
+      color: #ffffff;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
 
       @media (max-width: 768px) {
-        font-size: 28px;
+        font-size: 32px;
       }
     }
 
     p {
-      font-size: 18px;
-      color: #64748b;
-      margin-bottom: 40px;
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 36px;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      max-width: 480px;
 
       @media (max-width: 768px) {
-        font-size: 16px;
+        font-size: 15px;
       }
     }
 
-    button {
-      padding: 14px 25px;
-      font-size: large;
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+
+        strong {
+          font-size: 22px;
+          font-family: 'Manrope', sans-serif;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        span {
+          font-size: 11px;
+          font-family: 'Inter', sans-serif;
+          color: rgba(255, 255, 255, 0.55);
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          margin-top: 2px;
+        }
+      }
+    }
+
+    .hero-btn {
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+      }
     }
   }
 }
 
-body.dark{
-  .home{
-    background: transparent;
-    color: #f8fafc;
-  }
-  .home-content h1{
-    color: #60a5fa;
-  }
-  .home-content p{
-    color: #e2e8f0;
-  }
+/* Dark mode — keep the image but deepen the overlay */
+body.dark .home::before {
+  background: linear-gradient(
+    90deg,
+    rgba(6, 14, 32, 0.9) 0%,
+    rgba(6, 14, 32, 0.72) 55%,
+    rgba(6, 14, 32, 0.25) 100%
+  );
 }

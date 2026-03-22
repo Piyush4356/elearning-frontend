@@ -19,14 +19,16 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        <li>
-          <Link to={"/admin/course"}>
-            <div className="icon">
-              <FaBook />
-            </div>
-            <span>Courses</span>
-          </Link>
-        </li>
+        {user && user.role === "admin" && (
+          <li>
+            <Link to={"/admin/course"}>
+              <div className="icon">
+                <FaBook />
+              </div>
+              <span>Courses</span>
+            </Link>
+          </li>
+        )}
 
         {user && user.mainrole === "superadmin" && (
           <li>

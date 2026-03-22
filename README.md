@@ -15,6 +15,17 @@
 
 ---
 
+## 🌟 Live Demo
+- **Frontend**: [Vercel Deployment URL]
+- **Backend API**: https://elearning-server-gqgx.onrender.com
+
+> ### 💼 Recruiter Quick-Test Credentials
+> Want to bypass registration and test the platform instantly? 
+> - **Email:** `test@gmail.com`
+> - **Password:** `password`
+
+---
+
 ## 📌 Overview
 
 The **E-Learning Frontend** provides an interactive user interface for:

@@ -38,7 +38,7 @@ const CourseCard = ({ course }) => {
       <p>Price- ₹{course.price}</p>
       {isAuth ? (
         <>
-          {user && user.role !== "admin" ? (
+          {user && user.role !== "admin" && user.role !== "tester" ? (
             <>
               {user.subscription?.includes(course._id) ? (
                 <button

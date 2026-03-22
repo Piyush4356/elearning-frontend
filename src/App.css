@@ -1,19 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* =============================================
+   SCHOLAR LINEAR — EdTech Design System
+   Stitch MCP: "Coursera meets Linear.app"
+   
+   LIGHT MODE (default):
+     Background:   #f8fafc
+     Surface:      #ffffff
+     Primary:      #1e40af (Navy Blue)
+     Text:         #0f172a
+   
+   DARK MODE (.dark on body):
+     Background:   #0b1326
+     Surface:      #171f33
+     Primary:      #3b82f6 (Electric Blue)
+     Text:         #dae2fd
+   ============================================= */
+
+:root {
+  /* Light mode tokens */
+  --bg:              #f8fafc;
+  --surface:         #ffffff;
+  --surface-high:    #f1f5f9;
+  --surface-highest: #e2e8f0;
+  --primary:         #1e40af;
+  --primary-hover:   #1d4ed8;
+  --primary-light:   #dbeafe;
+  --secondary:       #7c3aed;
+  --text:            #0f172a;
+  --text-dim:        #64748b;
+  --outline:         #e2e8f0;
+  --outline-soft:    rgba(226, 232, 240, 0.7);
+  --radius:          12px;
+  --radius-sm:       8px;
+  --radius-full:     9999px;
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-md:       0 4px 20px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg:       0 10px 40px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+  --transition:      all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
   box-sizing: border-box;
-}
-
-body{
   margin: 0;
   padding: 0;
-  font-family: 'Outfit', sans-serif;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  background-attachment: fixed;
-  color: #1a1a2e;
-  min-height: 100vh;
 }
 
-h2 {
-  letter-spacing: -0.5px;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- DARK MODE TOKENS ---- */
+body.dark {
+  --bg:              #0b1326;
+  --surface:         #171f33;
+  --surface-high:    #222a3d;
+  --surface-highest: #2d3449;
+  --primary:         #3b82f6;
+  --primary-hover:   #60a5fa;
+  --primary-light:   #1e3a5f;
+  --secondary:       #7c3aed;
+  --text:            #dae2fd;
+  --text-dim:        #c4c5d5;
+  --outline:         #444653;
+  --outline-soft:    rgba(68, 70, 83, 0.5);
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:       0 4px 20px rgba(0,0,0,0.4);
+  --shadow-lg:       0 10px 40px rgba(0,0,0,0.5);
+
+  /* Explicit background to ensure it applies */
+  background-color: #0b1326 !important;
+  color: #dae2fd;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--text);
 }
 
 section {
@@ -21,13 +93,11 @@ section {
 }
 
 @media (max-width: 768px) {
-  section {
-    margin-bottom: 50px;
-  }
+  section { margin-bottom: 60px; }
 }
 
-a, button, input, .testimonial-card, .course-card {
-  transition: all 0.3s ease;
+a, button, input {
+  transition: var(--transition);
 }
 
 .main-wrapper {
@@ -40,100 +110,114 @@ a, button, input, .testimonial-card, .course-card {
   flex: 1;
 }
 
-.common-btn{
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #1e40af, #3b82f6);
-  color: white;
+/* =============================================
+   COMMON BUTTON — Professional Navy/Blue
+   ============================================= */
+.common-btn {
+  padding: 10px 22px;
+  background: var(--primary);
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  font-family: 'Outfit', sans-serif;
-  box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.2), 0 2px 4px -1px rgba(30, 64, 175, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover{
-    background: linear-gradient(135deg, #2563eb, #60a5fa);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.3), 0 4px 6px -2px rgba(30, 64, 175, 0.15);
-  }
-
-  &:active {
-    transform: translateY(0) scale(0.98);
-  }
-
-  @media(max-width: 768px){
-    font-size: 16px;
-  }
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* --- DARK MODE --- */
-body.dark {
-  background: linear-gradient(135deg, #0f172a, #020617);
-  background-attachment: fixed;
-  color: #f8fafc;
+.common-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-body.dark header {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.common-btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
-body.dark header .logo, body.dark header .logo a {
-  color: #60a5fa;
+.admin-btn {
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-body.dark header .link a {
-  color: #e2e8f0;
+.admin-btn:hover {
+  background: #6d28d9;
 }
 
-body.dark header .link a:hover {
-  color: #60a5fa;
+.logout-btn {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-body.dark .auth-form, 
-body.dark .course-card, 
-body.dark .testimonial-card,
+.logout-btn:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: #ffffff !important;
+  border: none;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* =============================================
+   DARK MODE OVERRIDES — Cascade
+   ============================================= */
+body.dark .course-card,
+body.dark .testimonial-card {
+  background-color: var(--surface);
+  border: 1px solid var(--outline);
+  box-shadow: var(--shadow-md);
+}
+
+body.dark .auth-form,
 body.dark .lecture-form {
-  background-color: #1e293b;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--surface);
+  border: 1px solid var(--outline);
+  box-shadow: var(--shadow-lg);
 }
 
-body.dark .auth-form h2, 
-body.dark .auth-form label, 
-body.dark .auth-form p, 
-body.dark .course-card h3, 
-body.dark .course-card p,
-body.dark .testimonial-card .message, 
-body.dark .testimonial-card .position,
-body.dark .lecture-form h2,
-body.dark .lecture-form label,
-body.dark .lecture-page h1,
-body.dark .lecture-page h3,
-body.dark .lecture-number,
-body.dark .progress {
-  color: #f8fafc;
+body.dark .auth-form h2,
+body.dark .course-card h3,
+body.dark .testimonial-card .message,
+body.dark .lecture-form h2 {
+  color: var(--text);
 }
 
-body.dark input, 
+body.dark input,
 body.dark select {
-  background-color: #334155;
-  color: #f8fafc;
-  border-color: #475569;
+  background-color: var(--surface-high);
+  color: var(--text);
+  border-color: var(--outline);
 }
 
-body.dark input:focus, 
+body.dark input:focus,
 body.dark select:focus {
-  background-color: #1e293b;
-  border-color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background-color: var(--surface-highest);
 }
-
-body.dark .common-btn {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-}
-

@@ -17,16 +17,19 @@
 
   .right {
     .course-form {
-      background-color: #fff;
+      background-color: var(--surface, #fff);
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      border: 1px solid var(--outline, #e2e8f0);
+      box-shadow: var(--shadow-md, 0 4px 20px rgba(0,0,0,0.06));
       text-align: center;
       width: 300px;
 
       h2 {
-        font-size: 24px;
-        color: #1e40af;
+        font-size: 22px;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        color: var(--primary, #1e40af);
         margin-bottom: 15px;
       }
 
@@ -36,8 +39,11 @@
         label {
           display: block;
           margin-bottom: 5px;
-          font-size: 15px;
-          color: #333;
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--text-dim, #64748b);
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
         }
 
         input,
@@ -45,10 +51,46 @@
           width: 92%;
           padding: 10px;
           margin-bottom: 15px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
+          border: 1px solid var(--outline, #ccc);
+          border-radius: 6px;
+          background-color: var(--surface-high, #f8fafc);
+          color: var(--text, #0f172a);
+          font-family: 'Inter', sans-serif;
+        }
+
+        input:focus,
+        select:focus {
+          outline: none;
+          border-color: var(--primary, #1e40af);
+          box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
         }
       }
     }
   }
 }
+
+/* Dark mode for course form */
+body.dark .course-form {
+  background-color: #171f33 !important;
+  border-color: #444653 !important;
+}
+
+body.dark .course-form h2 {
+  color: #60a5fa !important;
+}
+
+body.dark .course-form form label {
+  color: #c4c5d5 !important;
+}
+
+body.dark .course-form form input,
+body.dark .course-form form select {
+  background-color: #222a3d !important;
+  border-color: #444653 !important;
+  color: #dae2fd !important;
+}
+
+body.dark .course-form form select option {
+  background-color: #171f33;
+  color: #dae2fd;
+}

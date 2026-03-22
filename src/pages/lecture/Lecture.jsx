@@ -21,7 +21,12 @@ const Lecture = ({ user }) => {
   const [videoPrev, setVideoPrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
 
-  if (user && user.role !== "admin" && !user.subscription.includes(params.id))
+  if (
+    user &&
+    user.role !== "admin" &&
+    user.role !== "tester" &&
+    !user.subscription.includes(params.id)
+  )
     return navigate("/");
 
   async function fetchLectures() {

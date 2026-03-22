@@ -47,8 +47,8 @@ const Login = () => {
             </span>
           </div>
 
-          <button disabled={btnLoading} type="submit" className="common-btn">
-            {btnLoading ? "Please Wait..." : "Login"}
+          <button disabled={btnLoading} type="submit" className="common-btn" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
+            {btnLoading ? <div className="btn-spinner"></div> : "Login"}
           </button>
         </form>
         <p>
