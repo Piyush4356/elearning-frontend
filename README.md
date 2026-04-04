@@ -16,7 +16,7 @@
 ---
 
 ## 🌟 Live Demo
-- **Frontend**: [Vercel Deployment URL]
+- **Frontend**: https://elearning-frontend-sandy.vercel.app
 - **Backend API**: https://elearning-server-gqgx.onrender.com
 
 > ### 💼 Recruiter Quick-Test Credentials
