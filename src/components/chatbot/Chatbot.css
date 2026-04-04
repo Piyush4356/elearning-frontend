@@ -1,0 +1,515 @@
+/* =============================================
+   LEXI CHATBOT — Scholar Linear Design System
+   Floating AI assistant for E-Learning platform
+   ============================================= */
+
+/* ── Trigger Button ────────────────────────── */
+.lexi-trigger {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(30, 64, 175, 0.45);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease;
+  z-index: 9000;
+  outline: none;
+}
+
+.lexi-trigger:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 12px 40px rgba(30, 64, 175, 0.55);
+}
+
+.lexi-trigger--active {
+  transform: scale(1) rotate(0deg);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.4);
+}
+
+/* Notification badge */
+.lexi-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #f59e0b;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg);
+  animation: lexi-badge-pulse 2s infinite;
+}
+
+@keyframes lexi-badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* ── Chat Window ───────────────────────────── */
+.lexi-window {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  width: 380px;
+  max-height: 580px;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--outline);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 8999;
+  transform: scale(0.85) translateY(24px);
+  transform-origin: bottom right;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+}
+
+.lexi-window--open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Header ─────────────────────────────────── */
+.lexi-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.lexi-avatar {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.lexi-status-dot {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  animation: lexi-pulse 2.5s infinite;
+}
+
+@keyframes lexi-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+}
+
+.lexi-header-info {
+  flex: 1;
+}
+
+.lexi-header-info h3 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+}
+
+.lexi-header-info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  margin: 2px 0 0;
+}
+
+.lexi-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.lexi-close-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ── Messages Container ─────────────────────── */
+.lexi-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+.lexi-messages::-webkit-scrollbar {
+  width: 4px;
+}
+.lexi-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+.lexi-messages::-webkit-scrollbar-thumb {
+  background: var(--outline);
+  border-radius: 4px;
+}
+
+/* Empty state */
+.lexi-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.lexi-empty-icon {
+  font-size: 40px;
+  opacity: 0.5;
+}
+
+/* ── Message Bubbles ────────────────────────── */
+.lexi-msg {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  animation: lexi-msg-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes lexi-msg-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lexi-msg--user {
+  flex-direction: row-reverse;
+}
+
+/* Bot avatar bubble */
+.lexi-msg-avatar {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  flex-shrink: 0;
+  margin-bottom: 18px;
+}
+
+.lexi-msg-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 78%;
+}
+
+.lexi-msg--user .lexi-msg-content {
+  align-items: flex-end;
+}
+
+.lexi-bubble {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  box-shadow: var(--shadow-sm);
+  word-break: break-word;
+}
+
+.lexi-msg--user .lexi-bubble {
+  background: linear-gradient(135deg, var(--primary), #2563eb);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+  border-radius: 16px 16px 4px 16px;
+}
+
+.lexi-msg--bot .lexi-bubble {
+  border-radius: 16px 16px 16px 4px;
+}
+
+.lexi-time {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  padding: 0 4px;
+}
+
+/* ── Typing Indicator ───────────────────────── */
+.lexi-typing {
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 16px !important;
+  width: fit-content;
+}
+
+.lexi-typing span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: var(--text-dim);
+  border-radius: 50%;
+  animation: lexi-dot 1.4s infinite ease-in-out both;
+}
+
+.lexi-typing span:nth-child(1) { animation-delay: 0s; }
+.lexi-typing span:nth-child(2) { animation-delay: 0.2s; }
+.lexi-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes lexi-dot {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Quick Replies ──────────────────────────── */
+.lexi-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.lexi-qr-btn {
+  padding: 6px 12px;
+  background: var(--surface);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.lexi-qr-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+}
+
+/* Highlighted quick reply — Contact Support */
+.lexi-qr-btn--highlight {
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  color: #b45309;
+  border-color: #f59e0b;
+  font-weight: 700;
+}
+
+.lexi-qr-btn--highlight:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+body.dark .lexi-qr-btn--highlight {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border-color: #f59e0b;
+}
+
+body.dark .lexi-qr-btn--highlight:hover {
+  background: #f59e0b;
+  color: #1a1a1a;
+  border-color: transparent;
+}
+
+/* ── Input Area ─────────────────────────────── */
+.lexi-input-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--outline);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.lexi-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--surface-high);
+  border: 1.5px solid var(--outline);
+  border-radius: var(--radius-full);
+  color: var(--text);
+  font-size: 13.5px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lexi-input::placeholder {
+  color: var(--text-dim);
+}
+
+.lexi-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+  background: var(--surface);
+}
+
+/* Input state — typing an issue description */
+.lexi-input--issue {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12) !important;
+}
+
+.lexi-input--issue:focus {
+  border-color: #d97706 !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2) !important;
+}
+
+/* Input state — typing email */
+.lexi-input--email {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12) !important;
+}
+
+.lexi-input--email:focus {
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+.lexi-send-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.lexi-send-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.lexi-send-btn:not(:disabled):hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.4);
+}
+
+/* ── Footer Tag ─────────────────────────────── */
+.lexi-footer-tag {
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  padding: 6px 12px 10px;
+  background: var(--surface);
+  border-top: 1px solid var(--outline-soft);
+  flex-shrink: 0;
+}
+
+/* ── Dark Mode Overrides ────────────────────── */
+body.dark .lexi-window {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .lexi-bubble {
+  background: var(--surface);
+  border-color: var(--outline);
+  color: var(--text);
+}
+
+body.dark .lexi-input {
+  background: var(--surface-high);
+  border-color: var(--outline);
+  color: var(--text);
+}
+
+body.dark .lexi-input:focus {
+  border-color: var(--primary);
+  background: var(--surface-highest);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+body.dark .lexi-qr-btn {
+  background: var(--surface);
+  color: #60a5fa;
+  border-color: #60a5fa;
+}
+
+body.dark .lexi-qr-btn:hover {
+  background: #3b82f6;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 480px) {
+  .lexi-window {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 88px;
+    max-height: calc(100dvh - 120px);
+  }
+
+  .lexi-trigger {
+    right: 16px;
+    bottom: 20px;
+    width: 54px;
+    height: 54px;
+  }
+}

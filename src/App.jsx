@@ -23,6 +23,7 @@ import AdminCourses from "./admin/Courses/AdminCourses";
 import AdminUsers from "./admin/Users/AdminUser";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import Chatbot from "./components/chatbot/Chatbot";
 
 const App = () => {
   const{ isAuth, user, loading } = UserData();
@@ -57,6 +58,7 @@ const App = () => {
     </ErrorBoundary>
       </div>
       <Footer/>
+      <Chatbot />
     </div>
   </BrowserRouter>}
   </>

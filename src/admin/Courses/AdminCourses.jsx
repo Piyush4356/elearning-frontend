@@ -7,6 +7,7 @@ import "./admincourses.css";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { server } from "../../main";
+import QuizManager from "./QuizManager";
 
 const categories = [
   "Web Development",
@@ -30,6 +31,7 @@ const AdminCourses = ({ user }) => {
   const [image, setImage] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+  const [quizManagerCourse, setQuizManagerCourse] = useState(null); // { id, title }
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
@@ -90,7 +92,22 @@ const AdminCourses = ({ user }) => {
           <div className="dashboard-content">
             {courses && courses.length > 0 ? (
               courses.map((e) => {
-                return <CourseCard key={e._id} course={e} />;
+                return (
+                  <div key={e._id} style={{ position: "relative" }}>
+                    <CourseCard course={e} />
+                    <button
+                      className="common-btn"
+                      style={{
+                        position: "absolute", bottom: 12, right: 12,
+                        fontSize: 12, padding: "6px 14px",
+                        background: "linear-gradient(135deg, #7c3aed, #1e40af)",
+                      }}
+                      onClick={() => setQuizManagerCourse({ id: e._id, title: e.title })}
+                    >
+                      📝 Manage Quizzes
+                    </button>
+                  </div>
+                );
               })
             ) : (
               <p>No Courses Yet</p>
@@ -170,6 +187,15 @@ const AdminCourses = ({ user }) => {
           </div>
         </div>
       </div>
+
+      {/* Quiz Manager modal */}
+      {quizManagerCourse && (
+        <QuizManager
+          courseId={quizManagerCourse.id}
+          courseTitle={quizManagerCourse.title}
+          onClose={() => setQuizManagerCourse(null)}
+        />
+      )}
     </Layout>
   );
 };
